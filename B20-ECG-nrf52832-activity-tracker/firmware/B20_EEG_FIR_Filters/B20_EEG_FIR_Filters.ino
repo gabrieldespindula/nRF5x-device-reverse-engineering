@@ -924,22 +924,22 @@ void read_ADS1292_data(){
 
    /******** START CONVERT TO SINGLE  int32 *************/
    //from https://bois083.wordpress.com/lucid-dreaming-device/version-5-0/ads1292-firmware/
-
-      channelData[ch] = 0;
+      // ch-1 starts on zero and goes to gMaxChan that in this IC is 2. At the PCB channer 2 is being used, it implicates on using channelData[1] as actual electrode data.
+      channelData[ch-1] = 0;
       
       // read 24 bits of channel data in 3 byte chunks
-      channelData[ch] = ((channelData[ch]) << 8) | a;
-      channelData[ch] = ((channelData[ch]) << 8) | b;
-      channelData[ch] = ((channelData[ch]) << 8) | c;
+      channelData[ch-1] = ((channelData[ch-1]) << 8) | a;
+      channelData[ch-1] = ((channelData[ch-1]) << 8) | b;
+      channelData[ch-1] = ((channelData[ch-1]) << 8) | c;
 
       // convert 3 byte 2's complement to 4 byte 2's complement
-      if((channelData[ch] >> 23) == 1)
+      if((channelData[ch-1] >> 23) == 1)
       {
-         channelData[ch] |= 0xFF000000;
+         channelData[ch-1] |= 0xFF000000;
       }
       else
       {
-         channelData[ch] &= 0x00FFFFFF;
+         channelData[ch-1] &= 0x00FFFFFF;
       }
   }
   
