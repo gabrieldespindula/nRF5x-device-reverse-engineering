@@ -187,7 +187,7 @@ int n_channels        = 0;
 int blank             = 0;
 
 // SPI
-#define DOUT       23 //MOSI
+#define DOUT       18 //MOSI
 #define DIN        16 //MISO
 #define SPICK      17 //SCK
 
