@@ -762,7 +762,8 @@ void init_serial(){
 }
 
 void init_spi(){
-  
+  // set pins used to SPI communication.
+  SPI.setPins(DOUT, SPICK, DIN);
   // initializes the SPI bus by setting SCK and MOSI low
   SPI.begin();
   
